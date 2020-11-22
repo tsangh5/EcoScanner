@@ -1,0 +1,149 @@
+WindowManager:
+    MainWindow:
+    GameWindow:
+    StoreWindow:
+    CameraWindow:
+    CouponWindow:
+<MainWindow>:
+    name: "main"
+    GridLayout:
+        rows: 2
+        GridLayout:
+            size_hint_y: .2
+            size_hint_x: 1
+            cols: 4
+            padding: 
+            Label:
+                color: [0, 1, 0, 1]
+                text: 'The Eco Scanner'
+                font_name: 'Aller'
+                font_size: 50
+        GridLayout:
+            cols : 2
+            rows: 2
+            spacing: 40
+            size_hint: 1, .8
+            padding: 100, 40, 130, 40
+            Button:
+                size_hint:(None, None)
+                background_normal: 'shop.png'
+                on_release: app.root.current = "store"
+            Button:
+                background_normal: 'qrcode.png'
+                size_hint:(None, None)
+                on_release: app.root.current = "Camera"
+            Button:
+                background_normal: 'game.png'
+                size_hint:(None, None)
+                on_release: app.root.current = "game"
+            Button:
+                background_normal: 'coupons.png'
+                size_hint:(None, None)
+                on_release: app.root.current = "Coupons"
+<StoreWindow>
+    name:"store"
+    GridLayout:
+        cols: 1
+        padding: [0, 10, 0, 0]
+        Button:
+            text: 'Back'
+            on_release: app.root.current = 'main'
+        GridLayout:
+            cols: 4
+        Label:
+            color: [0, 1, 0, 1]
+            text: "You have %s points!"%(root.text_variable_1)     
+            font_name: 'Aller'
+        Button:
+            size_hint_x: 5
+            size_hint_y: 5
+            color: [0, 1, 0, 1]
+            background_color: [0, 0, 0, 0]
+            text: "Pay %s points for a 5 dollar coupon"%(root.hundred)
+            on_release: 
+                root.number: root.hundred    
+            font_name: 'Aller'
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Line:
+                    width: 2
+                    rectangle: self.x, self.y, self.width, self.height
+            on_release:
+        Button:
+            size_hint_x: 5
+            size_hint_y: 5
+            color: [0, 1, 0, 1]
+            background_color: [0, 0, 0, 0]
+            font_name: 'Aller'
+            text: "Pay %s points for a 10 dollar coupon"%(root.twohundred)
+            on_release:
+                root.number: root.twohundred
+                root.coupon: root.twohundred   
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Line:
+                    width: 2
+                    rectangle: self.x, self.y, self.width, self.height
+        Button:
+            size_hint_x: 5
+            size_hint_y: 5
+            color: [0, 1, 0, 1]
+            background_color: [0, 0, 0, 0]
+            font_name: 'Aller'
+            text: "Pay %s points for a 20 dollar coupon"%(root.fivehundred)
+            on_release:
+                root.number: root.fivehundred
+                root.coupon: root.fivehundred   
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Line:
+                    width: 2
+                    rectangle: self.x, self.y, self.width, self.height
+
+        Button:
+            size_hint_x: 5
+            size_hint_y: 5
+            color: [0, 1, 0, 1]
+            background_color: [0, 0, 0, 0]
+            text: "Pay %s points for a 50 dollar coupon"%(root.thousand)
+            on_release: 
+                root.number: root.thousand
+                root.coupon: root.thousand
+                
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Line:
+                    width: 2
+                    rectangle: self.x, self.y, self.width, self.height
+            font_name: 'Aller'
+
+<GameWindow>:
+    name: "game"
+    GridLayout:
+        cols : 1
+        Button:
+            text: 'Back'
+            on_release: app.root.current = 'main'
+            size_hint_y: 0.1
+        GridLayout:
+            cols: 1
+            Label:
+                color: [0, 1, 0, 1]
+                text: "Game coming!"
+<CouponWindow>
+    name: 'Coupons'
+    Button:
+        size_hint_x: 1
+        size_hint_y: 0.1
+        text: 'Back'
+        on_release: app.root.current = 'main'
+    Label:
+
+        text: "You have (%s) coupons!"%(root.text_variable_2)
+        color: [0, 1, 0, 1]
+        font_name: 'Aller'
+
